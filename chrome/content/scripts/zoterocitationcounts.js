@@ -56,6 +56,14 @@ function setCitationCount(item, tag, count) {
     extras.unshift("" + count + " citations (" + tag + ") [" + date + "]");
     extra = extras.join("\n");
     item.setField('extra', extra);
+    
+    // set callNumber(can not show time)
+    let callNumber = item.getField('callNumber');
+    if (!callNumber) {
+        callNumber = 0;
+    }
+    callNumber = count;
+    item.setField('callNumber', callNumber);
 }
 
 async function getCrossrefCount(item) {
